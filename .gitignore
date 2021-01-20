@@ -1,0 +1,10 @@
+# dir 不需要提交的目录
+/node_modules
+
+# file 不需要提交的文件
+dist
+
+# try 不需要提交任何带包含后缀名为 .try的文件
+.try
+
+# 参考阅读：https://zhuanlan.zhihu.com/p/52885189
