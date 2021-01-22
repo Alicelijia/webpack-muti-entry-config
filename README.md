@@ -76,3 +76,44 @@ todo-list
 3. 页面初始化的时候各种权限信息的人员如何进行路由的筛选
 ### 学习时间记录：
 #### 2021.1.20 主要初始化本地项目，进行webpack多入口项目的配置
+
+
+其他的用到但是不知道的知识
+1. git submodule 的使用
+2. vue-i18n国际化
+3. 如他们的包都放在@tencent下面，这个流程是如何做到的？
+
+
+2020.1.22日接入i18n 研究wegame-i18n-tool这个个loader是如何工作的
+1. 如何将本地的文件转换后，在文件中获取到的
+2. 通过loader转换后的文件在本地是如何使用的
+
+- 关于接入异步的语言信息
+```javascript
+import Vue from 'vue'
+import VueI18n from 'vue-i18n';
+import App from './App.vue';
+Vue.use(VueI18n);
+const i18n = new VueI18n({
+	locale: 'en',
+    messages: {}
+})
+function loadI18nMessage(lang){
+    return import(`./di18n-locale/${lang}`).then(msg =>{
+        i18n.setLocaleMessage(lang,msg.default);
+        return Promise.resolve()
+    })
+}
+// 默认在页面初始化之前先加载语言包
+loadI18nMessage("zh").then(() =>{
+    new Vue({
+        el:"#app",
+        i18n,
+        render: h => h(App)
+    })
+})
+```
+
+参考阅读：
+https://juejin.cn/post/6844903637450227726
+
