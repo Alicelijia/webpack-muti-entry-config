@@ -1,12 +1,12 @@
 <template>
-  <div class="index">
-    head
+  <div class="register">
+    register
   </div>
 </template>
 
 <script>
 export default {
- name: 'index',
+ name: 'register',
   data() {
     return {
 

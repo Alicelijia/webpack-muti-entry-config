@@ -8,6 +8,7 @@ function handleBeforeEach(to,from,next){
     // 2.检查是否登录，将用户的语言信息同步/account/change_language
     // 3. 将用户的语言信息同步到store
     // 4.
+    next()
 }
 
 

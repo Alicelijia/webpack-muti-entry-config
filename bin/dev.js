@@ -4,6 +4,8 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConfig = require('../config/webpack.dev.conf');
 
+// 启用history模式?hash模式与history模式的区别是什么？
+var history = require("connect-history-api-fallback");
 var app = express();
 var compiler = webpack(webpackConfig);
 // app.use(express.static('dist'))
@@ -28,6 +30,17 @@ compiler.plugin('compilation', (compilation) => {
 app.use(devMiddleware);
 
 app.use(hotMiddleware);
+
+// vue router 支持history模式
+console.log("webpackConfig",webpackConfig)
+if (webpackConfig && webpackConfig.historyApiFallback === true) {
+    app.use(history());
+  } else {
+    console.log('lili',webpackConfig.devServer.historyApiFallback)
+    app.use(history(webpackConfig.devServer.historyApiFallback));
+    console.log("jiajia")
+  }
+
 
 devMiddleware.waitUntilValid(() => {
   console.log(`[wgpack] Listening at uri...\n`);

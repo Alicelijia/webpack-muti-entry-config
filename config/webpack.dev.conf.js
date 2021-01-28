@@ -32,7 +32,15 @@ var webpackDevConfig = webpackMerge(webpackBaseConfig,{
             'process.env.NODE_ENV':JSON.stringify("developer")
         }),
         new webpack.HotModuleReplacementPlugin()
-    ]
+    ],
+    devServer:{
+        historyApiFallback:{
+            rewrites:[
+                { from: /\/game\/info/, to: '/game/info.html' },
+                { from: /\/game\/edit/, to: '/game/edit.html' }
+            ]
+        }
+    }
 })
 // 通过获取到devConfig，
 getEntriesInfo(cwd,{

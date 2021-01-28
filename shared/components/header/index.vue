@@ -1,20 +1,18 @@
 <template>
-  <div id="app">
-   <myhead></myhead>
+  <div class="index">
+    head
   </div>
 </template>
 
 <script>
-import myhead from '@shared/components/header'
-console.log("myhead",myhead)
 export default {
- name: 'main',
+ name: 'header',
   data() {
     return {
 
     }
   },
-  components: {myhead},
+  components: {},
   computed: {},
   watch: {},
   created() {},
