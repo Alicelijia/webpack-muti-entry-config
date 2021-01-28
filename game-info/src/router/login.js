@@ -10,6 +10,16 @@ export default[
         }
     },
     {
+        name:"login",
+        path:"/login",
+        redirect:() => import("../components/login"),
+        meta:{
+            whiteList:false,
+            tittleNavHide:true,
+            pvPath:'/developer/game/login'
+        }
+    },
+    {
         name:"register",
         path:'/register',
         component:() => import("../components/register")

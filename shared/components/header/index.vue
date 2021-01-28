@@ -1,12 +1,12 @@
 <template>
   <div class="index">
-    head
+    headhead
   </div>
 </template>
 
 <script>
 export default {
- name: 'header',
+ name: 'myheader',
   data() {
     return {
 

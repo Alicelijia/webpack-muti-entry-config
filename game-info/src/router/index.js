@@ -7,9 +7,8 @@ import login from './login'
 const routes = [
     ...login
 ]
-
 export default  new Router({
-    mode:history,
+    mode:"history",
     base:"/html/game/info",
     linkActiveClass:"is-active",
     scrollBehavior (to, from, savedPosition) {

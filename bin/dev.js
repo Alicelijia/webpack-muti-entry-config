@@ -7,18 +7,16 @@ const webpackConfig = require('../config/webpack.dev.conf');
 // 启用history模式?hash模式与history模式的区别是什么？
 var history = require("connect-history-api-fallback");
 var app = express();
-var compiler = webpack(webpackConfig);
+
 // vue router 支持history模式
-console.log("webpackConfig",webpackConfig)
 if (webpackConfig && webpackConfig.historyApiFallback === true) {
     app.use(history());
   } else {
-    console.log('lili',webpackConfig.devServer.historyApiFallback)
     app.use(history(webpackConfig.devServer.historyApiFallback));
-    console.log("jiajia")
   }
-app.use(express.static('dist'))
+// app.use(express.static('dist'))
 // app.use(express.static('/dist/css'))
+var compiler = webpack(webpackConfig);
 var devMiddleware = webpackDevMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath,  // 绑定中间件的公共路径,与webpack配置的路径相同
   quiet: true                                   // 向控制台显示任何内容
