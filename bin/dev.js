@@ -8,7 +8,16 @@ const webpackConfig = require('../config/webpack.dev.conf');
 var history = require("connect-history-api-fallback");
 var app = express();
 var compiler = webpack(webpackConfig);
-// app.use(express.static('dist'))
+// vue router 支持history模式
+console.log("webpackConfig",webpackConfig)
+if (webpackConfig && webpackConfig.historyApiFallback === true) {
+    app.use(history());
+  } else {
+    console.log('lili',webpackConfig.devServer.historyApiFallback)
+    app.use(history(webpackConfig.devServer.historyApiFallback));
+    console.log("jiajia")
+  }
+app.use(express.static('dist'))
 // app.use(express.static('/dist/css'))
 var devMiddleware = webpackDevMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath,  // 绑定中间件的公共路径,与webpack配置的路径相同
@@ -31,15 +40,7 @@ app.use(devMiddleware);
 
 app.use(hotMiddleware);
 
-// vue router 支持history模式
-console.log("webpackConfig",webpackConfig)
-if (webpackConfig && webpackConfig.historyApiFallback === true) {
-    app.use(history());
-  } else {
-    console.log('lili',webpackConfig.devServer.historyApiFallback)
-    app.use(history(webpackConfig.devServer.historyApiFallback));
-    console.log("jiajia")
-  }
+
 
 
 devMiddleware.waitUntilValid(() => {

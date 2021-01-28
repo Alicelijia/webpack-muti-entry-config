@@ -10,7 +10,7 @@ const routes = [
 
 export default  new Router({
     mode:history,
-    // base:"/pages/game/info",
+    base:"/html/game/info",
     linkActiveClass:"is-active",
     scrollBehavior (to, from, savedPosition) {
         if(to.path != from.path){

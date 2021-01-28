@@ -41,7 +41,7 @@ var webpackProdConfig = webpackMerge(webpackBaseConfig,{
     entry:entries, //prod环境需要将第三方包作为入口一起打包
     output:{
         path:path.resolve(cwd,'dist'),
-        publicPath:"//www.wegame.com/",
+        publicPath:"/",
         filename:"js/[name].[chunkhash].js"
     },
     module:{
@@ -63,7 +63,7 @@ var webpackProdConfig = webpackMerge(webpackBaseConfig,{
     plugins:[
         //  在DefinePlugin中定义全局的环境变量
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV':"production"
+            'process.env.NODE_ENV':JSON.stringify("production")
         }),
         new ExtractTextPlugin('css/[name][contenthash].css'),//为什么js是chunkhash css的命名却为contenthash,二者有什么区别？
         new OptimizeCssAssetsPlugin({
@@ -94,7 +94,7 @@ var webpackProdConfig = webpackMerge(webpackBaseConfig,{
 getEntriesInfo(cwd,{
     entryRoot:'entry',//入口js根目录
     template:"entry",//入口对应的js文件
-    urlPath:"pages",//访问路径
+    urlPath:"html",//访问路径
 }).forEach(ele => {
     webpackProdConfig.plugins.push(
         new HtmlWebpackPlugin({

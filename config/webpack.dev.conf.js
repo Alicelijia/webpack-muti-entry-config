@@ -29,16 +29,18 @@ var webpackDevConfig = webpackMerge(webpackBaseConfig,{
     devtool:"#cheap-module-source-map",
     plugins:[
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV':JSON.stringify("developer")
+            'process.env.NODE_ENV':JSON.stringify("development")
         }),
         new webpack.HotModuleReplacementPlugin()
     ],
     devServer:{
         historyApiFallback:{
+            verbose: true,
             rewrites:[
-                { from: /\/game\/info/, to: '/game/info.html' },
-                { from: /\/game\/edit/, to: '/game/edit.html' }
-            ]
+                { from:"/html/game/info", to: '/html/game/info.html' },
+                { from: "/html/game/edit", to: '/html/game/edit.html'},
+
+            ],
         }
     }
 })
@@ -46,7 +48,7 @@ var webpackDevConfig = webpackMerge(webpackBaseConfig,{
 getEntriesInfo(cwd,{
     entryRoot:"entry",
     tempalteRoot:"entry",
-    urlPath:"pages"
+    urlPath:"html"
 }).forEach(ele => {
     webpackDevConfig.plugins.push(
         new HtmlWebpackPlugin({
